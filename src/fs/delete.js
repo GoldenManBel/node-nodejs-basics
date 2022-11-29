@@ -6,17 +6,17 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const pathFile = path.join(__dirname, 'files/fileToRemove.txt');
+const filePath = path.join(__dirname, 'files/fileToRemove.txt');
 const errorText = 'FS operation failed';
 
 const remove = async () => {
     try {
-        const existsFile = fs.existsSync(pathFile);
+        const fileExists = fs.existsSync(filePath);
 
-        if(!existsFile) {
+        if(!fileExists) {
             throw new Error(errorText);
         } else {
-            await rm(pathFile);
+            await rm(filePath);
         }
     } catch (error) {
         console.error(error); 

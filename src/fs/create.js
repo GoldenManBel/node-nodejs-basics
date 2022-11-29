@@ -6,18 +6,18 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const pathFile = path.join(__dirname, 'files/fresh.txt');
-const errorText = 'FS operation failed';
+const filePath = path.join(__dirname, 'files/fresh.txt');
 const fileText = 'I am fresh and young';
+const errorText = 'FS operation failed';
 
 const create = async () => {
     try {
-        const existsFile = fs.existsSync(pathFile);
+        const fileExists = fs.existsSync(filePath);
 
-        if(existsFile) {
+        if(fileExists) {
             throw new Error(errorText);
         } else {
-            await writeFile(pathFile, fileText);
+            await writeFile(filePath, fileText);
         }
     } catch (error) {
         console.error(error); 

@@ -6,17 +6,17 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const pathFolder = path.join(__dirname, 'files');
+const folderPath = path.join(__dirname, 'files');
 const errorText = 'FS operation failed';
 
 const list = async () => {
     try {
-        const existsFolder = fs.existsSync(pathFolder);
+        const folderExists = fs.existsSync(folderPath);
 
-        if(!existsFolder) {
+        if(!folderExists) {
             throw new Error(errorText);
         } else {
-            const files = await readdir(pathFolder);
+            const files = await readdir(folderPath);
             console.info(files);
         }
     } catch (error) {

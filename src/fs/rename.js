@@ -6,19 +6,19 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const pathFile = path.join(__dirname, 'files/wrongFilename.txt');
-const pathRenameFile= path.join(__dirname, 'files/properFilename.md');
+const filePath = path.join(__dirname, 'files/wrongFilename.txt');
+const renameFilePath= path.join(__dirname, 'files/properFilename.md');
 const errorText = 'FS operation failed';
 
 const rename = async () => {
     try {
-        const existsFile = fs.existsSync(pathFile);
-        const existsRenameFile = fs.existsSync(pathRenameFile);
+        const fileExists = fs.existsSync(filePath);
+        const renameFileExists = fs.existsSync(renameFilePath);
 
-        if(!existsFile || existsRenameFile) {
+        if(!fileExists || renameFileExists) {
             throw new Error(errorText);
         } else {
-            await renameFile(pathFile, pathRenameFile);
+            await renameFile(filePath, renameFilePath);
         }
     } catch (error) {
         console.error(error); 

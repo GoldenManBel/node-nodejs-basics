@@ -6,19 +6,19 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const pathFolder = path.join(__dirname, 'files');
-const pathNewFolder = path.join(__dirname, 'files_copy');
+const folderPath = path.join(__dirname, 'files');
+const newFolderPath = path.join(__dirname, 'files_copy');
 const errorText = 'FS operation failed';
 
 const copy = async () => {
     try {
-        const existsFolder = fs.existsSync(pathFolder);
-        const existsNewFolder = fs.existsSync(pathNewFolder);
+        const folderExists = fs.existsSync(folderPath);
+        const newFolderExists = fs.existsSync(newFolderPath);
 
-        if(!existsFolder || existsNewFolder) {
+        if(!folderExists || newFolderExists) {
             throw new Error(errorText);
         } else {
-            await cp(pathFolder, pathNewFolder, {
+            await cp(folderPath, newFolderPath, {
                 recursive: true
             });
         }

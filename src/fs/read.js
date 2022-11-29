@@ -6,17 +6,17 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const pathFile = path.join(__dirname, 'files/fileToRead.txt');
+const filePath = path.join(__dirname, 'files/fileToRead.txt');
 const errorText = 'FS operation failed';
 
 const read = async () => {
     try {
-        const existsFile = fs.existsSync(pathFile);
+        const fileExists = fs.existsSync(filePath);
 
-        if(!existsFile) {
+        if(!fileExists) {
             throw new Error(errorText);
         } else {
-            const fileContent = await readFile(pathFile, { encoding: 'utf8' });
+            const fileContent = await readFile(filePath, { encoding: 'utf8' });
             console.info(fileContent);
         }
     } catch (error) {
