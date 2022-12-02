@@ -8,7 +8,7 @@ const transformStream = new Transform({
     transform(chunk, encoding, callback) {
         callback(null, String(chunk).split('').reverse().join('').trim() + '\n');
     }
-  });
+});
 
 const transform = async () => {
     try {
