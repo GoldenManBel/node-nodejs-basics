@@ -1,5 +1,4 @@
-import * as fs from 'node:fs';
-import { readFile } from 'node:fs/promises';
+import { readFile, access, constants } from 'node:fs/promises';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -11,7 +10,7 @@ const errorText = 'FS operation failed';
 
 const read = async () => {
     try {
-        const fileExists = fs.existsSync(filePath);
+        const fileExists = await access(filePath, constants.F_OK).then(() => true).catch(() => false);
 
         if(!fileExists) {
             throw new Error(errorText);

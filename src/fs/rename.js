@@ -1,5 +1,4 @@
-import * as fs from 'node:fs';
-import { rename as renameFile } from 'node:fs/promises';
+import { rename as renameFile, access, constants } from 'node:fs/promises';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -12,8 +11,8 @@ const errorText = 'FS operation failed';
 
 const rename = async () => {
     try {
-        const fileExists = fs.existsSync(filePath);
-        const renameFileExists = fs.existsSync(renameFilePath);
+        const fileExists = await access(filePath, constants.F_OK).then(() => true).catch(() => false);
+        const renameFileExists = await access(renameFilePath, constants.F_OK).then(() => true).catch(() => false);
 
         if(!fileExists || renameFileExists) {
             throw new Error(errorText);
